@@ -36,7 +36,8 @@ const db = mysql.createConnection(
          'Add department',
          'Add role',
          'Add employee',
-         'Update employee role'
+         'Update employee role',
+         'Exit'
         ],
        } 
     ])
@@ -66,7 +67,12 @@ const db = mysql.createConnection(
         else {
             console.log('Something has gone wrong')
         }
-
+        
     });
 }
+
+function viewDept(){
+console.log("working");
+}
+
 initialPrompt()
