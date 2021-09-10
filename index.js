@@ -72,27 +72,29 @@ const db = mysql.createConnection(
 }
 
 function viewDept(){
-    db.query("SELECT * FROM department", function (error, response){
+    db.query("SELECT * FROM department", function (error, results){
         if (error) throw error;
-        console.table(response);
+        console.table(results);
         initialPrompt();
     });
 };
 
 function viewRole(){
-    db.query("SELECT * FROM role", function (error, response){
+    db.query("SELECT * FROM role", function (error, results){
         if (error) throw error;
-        console.table(response);
+        console.table(results);
         initialPrompt();
     });
 };
 
 function viewEmp(){
-    db.query("SELECT * FROM employee", function (error, response){
+    db.query("SELECT * FROM employee", function (error, results){
         if (error) throw error;
-        console.table(response);
+        console.table(results);
         initialPrompt();
     });
 };
+
+
 
 initialPrompt()

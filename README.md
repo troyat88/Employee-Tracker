@@ -1,5 +1,7 @@
 # Employee Tracker  ![License](https://img.shields.io/badge/License-ISC-brightgreen)
 
+![Example]("Deliverables/DEMO.gif")
+
 ## Description
 A content management systems (CMS) to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
