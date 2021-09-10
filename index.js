@@ -72,7 +72,27 @@ const db = mysql.createConnection(
 }
 
 function viewDept(){
-console.log("working");
-}
+    db.query("SELECT * FROM department", function (error, response){
+        if (error) throw error;
+        console.table(response);
+        initialPrompt();
+    });
+};
+
+function viewRole(){
+    db.query("SELECT * FROM role", function (error, response){
+        if (error) throw error;
+        console.table(response);
+        initialPrompt();
+    });
+};
+
+function viewEmp(){
+    db.query("SELECT * FROM employee", function (error, response){
+        if (error) throw error;
+        console.table(response);
+        initialPrompt();
+    });
+};
 
 initialPrompt()
