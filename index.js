@@ -95,6 +95,30 @@ function viewEmp(){
     });
 };
 
+function addDept() {
+    inquirer
+    .prompt ([
+        {
+        
+        type: "input",
+        message : "What is the name of the new department?",
+        name: "dept"
+        }   
+    ]) .then (function(res) {
+        db.query( "INSERT INTO department SET ?",
+        {
+            name_: res.dept
+        },
+        function(err) {
+            if (err) throw err
+            console.table(res);
+            initialPrompt();
+        }
+        )
+
+        })
+}
+
 
 
 initialPrompt()
