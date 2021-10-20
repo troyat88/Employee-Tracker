@@ -58,7 +58,7 @@ const db = mysql.createConnection(
         if (task == "Add role"){
             return addRole(); 
         }
-        if (task == "Add Employee"){
+        if (task == "Add employee"){
             return addEmp(); 
         }
         if (task == "Update employee role"){
@@ -119,6 +119,46 @@ function addDept() {
         })
 }
 
+function addEmp() {
+    inquirer
+    .prompt ([
+        {
+            type: "input",
+            message: "What is the first name of the new employee?",
+            name: "firstName"
+          },
+              {
+            type: "input",
+            message: "What is the last name of the new employee?",
+            name: "lastName"
+          },
+              {
+            type: "input",
+            message: "What is the new employee role-id ?",
+            name: "role"
+          },
+              {
+            type: "input",
+            message: "Please enter the manager-id for new employee?",
+            name: "manager"
+        }   
+    ]) .then (function(res) {
+        db.query( "INSERT INTO employee SET ?",
+        {
+            first_name: res.firstName,
+            last_name: res.lastName,
+            role_id: res.role,
+            manager_id: res.manager,
+        },
+        function(err) {
+            if (err) throw err
+            console.table(res);
+            initialPrompt();
+        }
+        )
+
+        })
+}
 
 
 initialPrompt()
