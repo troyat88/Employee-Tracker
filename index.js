@@ -119,36 +119,30 @@ function addDept() {
         })
 }
 
-function addEmp() {
+function addRole() {
     inquirer
     .prompt ([
         {
             type: "input",
-            message: "What is the first name of the new employee?",
-            name: "firstName"
+            message: "What is the title of the new role ?",
+            name: "title"
           },
               {
             type: "input",
-            message: "What is the last name of the new employee?",
-            name: "lastName"
+            message: "Enter department-id for new role ?",
+            name: "dept"
           },
               {
             type: "input",
-            message: "What is the new employee role-id ?",
-            name: "role"
-          },
-              {
-            type: "input",
-            message: "Please enter the manager-id for new employee?",
-            name: "manager"
-        }   
+            message: "What is the salary for the new role ?",
+            name: "salary"
+          }
     ]) .then (function(res) {
-        db.query( "INSERT INTO employee SET ?",
+        db.query( "INSERT INTO role SET ?",
         {
-            first_name: res.firstName,
-            last_name: res.lastName,
-            role_id: res.role,
-            manager_id: res.manager,
+            title: res.title,
+            salary: res.salary,
+            department_id: res.dept,
         },
         function(err) {
             if (err) throw err
@@ -159,6 +153,8 @@ function addEmp() {
 
         })
 }
+
+
 
 
 initialPrompt()
