@@ -63,12 +63,19 @@ const db = mysql.createConnection(
         }
         if (task == "Update employee role"){
             return UpdateRole(); 
-        }         
+        }
+        if (task == "Exit"){
+            return exit(); 
+        }                  
         else {
             console.log('Something has gone wrong')
         }
         
     });
+}
+
+function exit() {
+    process.exit()
 }
 
 function viewDept(){
@@ -153,6 +160,38 @@ function addRole() {
 
         })
 }
+
+function UpdateRole() {
+    inquirer
+    .prompt ([
+        {
+        type: "input",
+        message : "What is the employee's ID number?",
+        name: "id"
+        },
+        {
+        type: "input",
+        message : "What is the employees NEW ROLE-ID",
+        name: "roleID"
+        }   
+    ]) .then (function(res) {
+        db.query( "UPDATE employee SET role_id =? WHERE emp_id =?",
+        [
+         res.roleID,
+         res.id   
+        ],
+        function(err) {
+            if (err) throw err
+            console.table(res);
+            initialPrompt();
+        }
+        )
+
+        })
+}
+
+
+
 
 
 
