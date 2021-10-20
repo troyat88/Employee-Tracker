@@ -161,6 +161,47 @@ function addRole() {
         })
 }
 
+function addEmp() {
+    inquirer
+    .prompt ([
+        {
+            type: "input",
+            message: "What is the FIRST NAME of new employee ?",
+            name: "firstName"
+          },
+              {
+            type: "input",
+            message: "What is the LAST NAME of new employee ?",
+            name: "lastName"
+          },
+              {
+            type: "input",
+            message: "What is the new employee's role ID ?",
+            name: "roleID"
+          },
+          {
+            type: "input",
+            message: "Enter the Manager ID for new employee ?",
+            name: "managerID"
+          }
+    ]) .then (function(res) {
+        db.query( "INSERT INTO employee SET ?",
+        {
+            first_name: res.firstName,
+            last_name: res.lastName,
+            role_id: res.roleID,
+            manager_id: res.managerID
+        },
+        function(err) {
+            if (err) throw err
+            console.table(res);
+            initialPrompt();
+        }
+        )
+
+        })
+}
+
 function UpdateRole() {
     inquirer
     .prompt ([
@@ -189,11 +230,5 @@ function UpdateRole() {
 
         })
 }
-
-
-
-
-
-
 
 initialPrompt()
